@@ -1,4 +1,6 @@
-$(document).ready(console.log('JQ is ready!'));
+// Day 2 stuff, adding DOM
+
+$(document).ready(console.log('JQ LINKED'), $('.button').on('click', employeeBonus));
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
@@ -39,40 +41,29 @@ const employees = [
 		reviewRating: 1,
 	},
 ];
+let domArray = [];
 
 console.log(employees);
 
 function employeeBonus(employee) {
 	let totalIncome;
 	for (let i = 0; i < employees.length; i++) {
-		if (employees[i].name.toLowerCase() === employee.toLowerCase()) {
-			totalIncome = {
-				name: employees[i].name,
-				bonusPercentage: bonusPercent(
-					employees[i].reviewRating,
-					employees[i].employeeNumber,
-					employees[i].annualSalary
-				),
-				totalCompensation:
-					employees[i].annualSalary *
-						bonusPercent(
-							employees[i].reviewRating,
-							employees[i].employeeNumber,
-							employees[i].annualSalary
-						) +
-					Number(employees[i].annualSalary),
-				totalBonus: Math.round(
-					employees[i].annualSalary *
-						bonusPercent(
-							employees[i].reviewRating,
-							employees[i].employeeNumber,
-							employees[i].annualSalary
-						)
-				),
-			};
-		}
+		let bonus = bonusPercent(
+			employees[i].reviewRating,
+			employees[i].employeeNumber,
+			employees[i].annualSalary
+		);
+		let bonusMoney = Math.round(employees[i].annualSalary) * bonus;
+		totalIncome = {
+			name: employees[i].name,
+			bonusPercentage: bonus,
+			totalCompensation: bonusMoney + Number(employees[i].annualSalary),
+			totalBonus: bonusMoney,
+		};
+		domArray.push(totalIncome);
+		addHidden();
 	}
-	return totalIncome;
+	return domArray;
 }
 
 function bonusPercent(reviewRating, employeeNumber, annualSalary) {
@@ -80,7 +71,7 @@ function bonusPercent(reviewRating, employeeNumber, annualSalary) {
 	if (employeeNumber.length === 4) {
 		bonus += 0.05;
 	}
-	if (annualSalary > 65000) {
+	if (Number(annualSalary) > 65000) {
 		bonus -= 0.01;
 	}
 	if (reviewRating <= 2) {
@@ -101,26 +92,30 @@ function bonusPercent(reviewRating, employeeNumber, annualSalary) {
 	return bonus;
 }
 
-console.log('Annual bonus is: 0', bonusPercent(1, '111', 64000));
-console.log('Annual bonus is: 0', bonusPercent(1, '111', 66000));
-console.log('Annual bonus should be: 0.4', bonusPercent(3, '111', 64000));
-console.log('Annual bonus should be: 0.6', bonusPercent(4, '111', 64000));
-console.log('Annual bonus should be: 0.10', bonusPercent(5, '111', 64000));
-console.log('Annual bonus should be: 0.9', bonusPercent(3, '1111', 64000));
-console.log('Annual bonus should be: 0.11', bonusPercent(4, '1111', 64000));
-console.log('Annual bonus should be: 0.13', bonusPercent(5, '1111', 64000));
+console.log('Annual bonus is: 0', bonusPercent(1, '111', '64000'));
+console.log('Annual bonus is: 0', bonusPercent(1, '111', '66000'));
+console.log('Annual bonus should be: 0.4', bonusPercent(3, '111', '64000'));
+console.log('Annual bonus should be: 0.6', bonusPercent(4, '111', '64000'));
+console.log('Annual bonus should be: 0.10', bonusPercent(5, '111', '64000'));
+console.log('Annual bonus should be: 0.9', bonusPercent(3, '1111', '64000'));
+console.log('Annual bonus should be: 0.11', bonusPercent(4, '1111', '64000'));
+console.log('Annual bonus should be: 0.13', bonusPercent(5, '1111', '64000'));
 
-console.log('Employee Bonus should be: 0.9%, $4,230, $51,230', employeeBonus('Atticus'));
-console.log(employeeBonus('jem'));
-console.log(employeeBonus('scout'));
-console.log(employeeBonus('Robert'));
-console.log(employeeBonus('Mayella'));
+console.log('Employee Bonus should be: 0.9%, $4,230, $51,230', employeeBonus());
+// console.log(employeeBonus('jem'));
+// console.log(employeeBonus('scout'));
+// console.log(employeeBonus('Robert'));
+// console.log(employeeBonus('Mayella'));
 
-// Day 2 stuff, adding DOM
+//? JQ Stuff
 
-$('.button').on('click', employeeBonus);
-
-let el = $('.bonuses')
-for( let i = 0; i < employees.length; i++) {
-	el.append(`<li>${employees.}</li>`)
+function addHidden() {
+	let el = $('.appear');
+	el.append(`
+	<ul>
+		<li>${domArray[0].name}</li>
+		<li>${domArray[0].bonusPercentage}</li>
+		<li>${domArray[0].totalCompensation}</li>
+		<li>${domArray[0].totalBonus}</li>
+	</ul>`);
 }
