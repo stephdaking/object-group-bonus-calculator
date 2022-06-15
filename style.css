@@ -1,0 +1,78 @@
+body {
+	background: rgb(0, 162, 249);
+}
+.employees {
+	display: inline-block;
+	margin: 0;
+	width: 240px;
+	height: 210px;
+	margin: 10% auto;
+	vertical-align: middle;
+
+	border: rgb(1, 1, 1) 1px solid;
+	box-shadow: 0 0 0 8px rgb(0, 0, 0), 0 0 0 9px #ccc;
+	background: rgb(0, 44, 242);
+	text-align: center;
+	font-size: 22px;
+}
+.appear ul {
+	display: inline-block;
+	margin: 0;
+	width: 200px;
+	height: 200px;
+	margin: 10% auto;
+	vertical-align: middle;
+
+	border: rgb(1, 1, 1) 1px solid;
+	box-shadow: 0 0 0 8px rgb(0, 0, 0), 0 0 0 9px #ccc;
+	background: rgb(0, 44, 242);
+	text-align: center;
+}
+h1 {
+	text-align: center;
+	color: white;
+	background: black;
+}
+h2 {
+	text-align: center;
+}
+li {
+	list-style: none;
+}
+button {
+	background: linear-gradient(-45deg, #3f00b5, #9f69fe, #27c8b7, #3f00b5);
+	background-size: 800% 400%;
+	padding: 1em 2em;
+	display: inline-block;
+	border: none;
+	border-radius: 10px;
+	font-size: 17px;
+	font-weight: 700;
+	color: white;
+	transition: all 0.5s ease-in-out;
+	animation: gradient 10s infinite cubic-bezier(0.62, 0.28, 0.23, 0.99) both;
+}
+
+button:hover {
+	animation: gradient 3s infinite;
+	transform: scale(1.05);
+}
+
+button:active {
+	animation: gradient 3s infinite;
+	transform: scale(0.8);
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
