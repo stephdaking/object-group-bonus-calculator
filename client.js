@@ -1,3 +1,5 @@
+$(document).ready(console.log('JQ is ready!'));
+
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
 // This problem is massive! Break the problem down, take small steps, and test as you go.
@@ -114,9 +116,11 @@ console.log(employeeBonus('scout'));
 console.log(employeeBonus('Robert'));
 console.log(employeeBonus('Mayella'));
 
-// {
-//   name: 'Atticus',
-//   employeeNumber: '2405',
-//   annualSalary: '47000',
-//   reviewRating: 3
-// },
+// Day 2 stuff, adding DOM
+
+$('.button').on('click', employeeBonus);
+
+let el = $('.bonuses')
+for( let i = 0; i < employees.length; i++) {
+	el.append(`<li>${employees.}</li>`)
+}
