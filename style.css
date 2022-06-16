@@ -39,6 +39,7 @@ h2 {
 li {
 	list-style: none;
 }
+/* Learned how to make this button in a tutorial and effects */
 button {
 	background: linear-gradient(-45deg, #3f00b5, #9f69fe, #27c8b7, #3f00b5);
 	background-size: 800% 400%;
