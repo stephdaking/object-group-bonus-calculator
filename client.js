@@ -62,7 +62,7 @@ function employeeBonus(employee) {
 		totalIncome = {
 			name: employees[i].name,
 			bonusPercentage: bonus,
-			totalCompensation: bonusMoney + Number(employees[i].annualSalary),
+			totalCompensation: Math.round(bonusMoney + Number(employees[i].annualSalary)),
 			totalBonus: bonusMoney,
 		};
 		domArray.push(totalIncome);
@@ -127,16 +127,3 @@ function addHidden() {
 	</ul>`);
 	}
 }
-
-// function appendEmployeeToDom(employee, bonus) {
-// 	// Create a new list item
-// 	$('#content').append(`
-// 		<li>
-// 			Name: ${employee.name}
-// 			#: ${employee.employeeNumber}
-// 			salary: ${employee.annualSalary}
-// 			rating: ${employee.reviewRating}
-// 			BONUS: ${bonus}
-// 		</li>
-// 	`);
-// }
